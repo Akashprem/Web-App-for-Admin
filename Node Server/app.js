@@ -1,13 +1,33 @@
-const express = require('express')
+var express = require('express')
 var mysql = require('mysql')
+var bodyParser = require('body-parser')
+var cors = require('cors')
+
 const app = express()
 
-var con = mysql.createConnection({
-  host: "localhost",
-  user: "yourusername",
-  password: "yourpassword"
+/*var con = mysql.createConnection({
+  host: "https://electiveteamone.000webhostapp.com/",
+  user: "electiveamrita",
+  password: "elective",
+  database: "id12338909_electivemanagement"
 })
 
-app.get('/', (req, res) => res.send('Hello World!'))
+con.connect(function(err) {
+  if (err) {
+      console.error('error connecting: ' + err.stack);
+      return;
+  }
+  else {
+    console.log("Connection successful")
+  }
+})*/
 
-module.exports = app;
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(cors())
+
+app.post('/', (req, res) => {
+  res.send("successful")
+})
+
+module.exports = app
