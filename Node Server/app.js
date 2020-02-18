@@ -27,7 +27,17 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors())
 
 app.post('/', (req, res) => {
-  res.send("successful")
+  const data = JSON.parse(Object.keys(req.body)[0])
+  if (data.u==="ADM015" && data.p==="passwordnew")
+  {
+    console.log("successful")
+    res.send({status: "successful"})
+  }
+  else
+  {
+    console.log("unsuccessful")
+    res.send({status: "unsuccessful"})
+  }
 })
 
 module.exports = app

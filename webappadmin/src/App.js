@@ -1,5 +1,7 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
+import './App.css'
+import Dashboard from './Dashboard.js'
 
 class App extends Component {
   constructor(props) {
@@ -18,13 +20,21 @@ class App extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
-
+    const success = <Dashboard />
+    const no_success = <h2> Log In Unsuccessful </h2>
     fetch('http://localhost:5000/', {
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       method: 'POST',
       body: JSON.stringify(this.state),
     })
-    .then((response) => console.log(response.data))
+    .then((response) => {
+      response.json().then((result) => {
+        if (result.status==="unsuccessful")
+          ReactDOM.render(no_success, document.getElementById('root'))
+        if (result.status==="successful")
+          ReactDOM.render(success, document.getElementById('root'))
+      })
+    })
     .catch((err) => console.log(err))
   }
 

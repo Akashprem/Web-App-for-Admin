@@ -1,0 +1,11 @@
+.Box {
+    position: relative;
+    left: 50%;
+    top: 15%;
+    transform: translate(-50%, +5%);
+    border: 1px solid black;
+    border-radius: 25px;
+    padding: 20px;
+    width: 800px;
+    height: 100px;
+}
